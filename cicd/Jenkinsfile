@@ -14,7 +14,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                dir('app') {
+                    bat 'mvn clean package'
+                }
             }
         }
         stage('Code Quality') {
