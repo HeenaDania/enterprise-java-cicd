@@ -21,8 +21,10 @@ pipeline {
         }
         stage('Code Quality') {
             steps {
-                withSonarQubeEnv('SonarQube') {
+                dir(app){
+                    withSonarQubeEnv('SonarQube') {
                     bat 'mvn sonar:sonar'
+                }
                 }
             }
         }
