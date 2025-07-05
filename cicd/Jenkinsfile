@@ -57,7 +57,7 @@ pipeline {
             cleanWs()
         }
         failure {
-            // Add notification logic here (Slack, email, etc.)
+            echo 'Build failed!'
         }
     }
 }
