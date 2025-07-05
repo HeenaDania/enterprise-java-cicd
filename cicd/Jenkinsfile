@@ -14,20 +14,20 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
         stage('Code Quality') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
+                    bat 'mvn sonar:sonar'
                 }
             }
         }
         stage('Docker Build & Push') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-ecr-creds']]) {
-                    sh """
+                    bat """
                         aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPO
                         docker build -t $DOCKER_IMAGE .
                         docker push $DOCKER_IMAGE
@@ -38,7 +38,7 @@ pipeline {
         stage('Update GitOps Repo') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'ebcb8140-70bc-49ff-b84f-af208749eeb4', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                    sh """
+                    bat """
                         git config --global user.email "heena.dania7@gmail.com"
                         git config --global user.name "$GIT_USER"
                         git clone https://$GIT_USER:$GIT_PASS@github.com/HeenaDania/enterprise-java-gitops.git
