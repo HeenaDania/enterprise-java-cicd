@@ -86,8 +86,8 @@ Grafana dashboards visualize application and cluster health.
 
 ## 📚 Documentation
 
-- [Project Report](../docs/Project_Report.md)
-- [System Architecture](../docs/Architecture.png)
+- [Project Report](docs/BootCampProject-4JavaCICD-JenkinsGitOpsKubernetes.docx)
+- [System Architecture](docs/Architecture.png)
 
 ---
 
