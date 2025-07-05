@@ -1,0 +1,17 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::210161286173:oidc-provider/https://oidc.eks.us-east-1.amazonaws.com/id/7FA1BAF63FC4D7D74A60CE508FA0A8BE"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "<oidc-provider-url>:sub": "system:serviceaccount:default:my-app-service-account"
+        }
+      }
+    }
+  ]
+}
